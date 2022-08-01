@@ -1,0 +1,40 @@
+
+## Setup Instruction
+```
+poetry install
+```
+
+## Run Test
+```
+poetry run pytest
+```
+
+## What to do next
+
+### Install Pre-commit (Recommended)
+```
+poetry run pre-commit install
+```
+If you wish to edit pre-commit behavior see ```.pre-commit-config.yaml```
+
+### Install Jupyter Notebook Kernel
+```
+poetry run python -m ipykernel install --user --name {{project_name}}
+```
+
+### Adjusting the Dependencies
+edit pyproject.toml or just do
+```
+poetry add numpy
+```
+or for dev dependencies
+```
+poetry add --dev numpy
+```
+See [python-poetry.org](https://python-poetry.org/)
+
+### Change Pytest, Flake, Coverage Setting
+See ```tox.ini```
+
+### Change how sonarqube behaves.
+See ```sonar-project.properties```
