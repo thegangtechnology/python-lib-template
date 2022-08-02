@@ -10,3 +10,7 @@ pipx install copier
 ```
 copier git@github.com:thegangtechnology/python-lib-template.git my_new_project
 ```
+
+## Example Output
+
+https://github.com/thegangtechnology/example_python_lib
