@@ -1,6 +1,6 @@
 # questions
 project_name:
     type: str
-    help: What is your project name?
+    help: What is your project name? (Python package name. Ex: the_gang_model)
 
 _subdirectory: template
