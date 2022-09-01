@@ -4,7 +4,7 @@ on: [ push ]
 
 env:
   PYTHON_VERSION: "3.9"
-  POETRY_VERSION: "1.1.0"
+  POETRY_VERSION: "1.2.0"
 
 jobs:
   lint:
@@ -52,6 +52,7 @@ jobs:
       - name: Install Poetry
         run: |
           curl -sL https://install.python-poetry.org | POETRY_VERSION=${{ env.POETRY_VERSION }} python - -y
+
       - name: Configure Poetry
         run: |
           echo "$HOME/.local/bin" >> $GITHUB_PATH
