@@ -4,7 +4,7 @@ on: [ push ]
 
 env:
   PYTHON_VERSION: "3.9"
-  POETRY_VERSION: "1.2.0"
+  POETRY_VERSION: "1.4.0"
 
 jobs:
   lint:
@@ -27,10 +27,10 @@ jobs:
         with:
           isortVersion: "5.10.1"
 
-      # - name: Lint with black
-      #   uses: psf/black@stable
-      #   with:
-      #     version: "22.3.0"
+      - name: Lint with black
+        uses: psf/black@stable
+        with:
+          version: "22.3.0"
 
       - name: Lint with flake8
         run: |
