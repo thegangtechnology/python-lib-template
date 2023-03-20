@@ -6,3 +6,4 @@ _subdirectory: template
 _tasks:
     - "git init"
     - "poetry add -G dev pre-commit flake8 pytest pytest-cov ipykernel flake8-annotations"
+    - "poetry install"
