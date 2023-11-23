@@ -1,0 +1,37 @@
+name: Python tests
+
+on: [push]
+
+env:
+  PYTHON_VERSION: {{python_version}}}
+  POETRY_VERSION: {{poetry_version}}}
+  PROJECT_KEY: thegangtechnology_{{project_name}}
+
+jobs:
+  # yes this seems stupid but read https://github.com/orgs/community/discussions/26671
+  # you can't use env directly in reusable workflow. Seems very arbitary to me though.
+  get-env:
+    name: Get Environment vars
+    runs-on: ubuntu-latest
+    outputs:
+      PYTHON_VERSION: ${{ env.PYTHON_VERSION }}
+      POETRY_VERSION: ${{ env.POETRY_VERSION }}
+      PROJECT_KEY: ${{ env.PROJECT_KEY }}
+    steps:
+      - run: echo "null"
+
+  lint:
+    needs: get-env
+    uses: thegangtechnology/shared-workflow/.github/workflows/python-lint.yml@main
+    with:
+      python-version: ${{ needs.get-env.outputs.PYTHON_VERSION }}
+
+  test-and-sonarqube:
+    needs: get-env
+    uses: thegangtechnology/shared-workflow/.github/workflows/python-test-sonarqube.yml@main
+    with:
+      python-version: ${{ needs.get-env.outputs.PYTHON_VERSION }}
+      poetry-version: ${{ needs.get-env.outputs.POETRY_VERSION }}
+      project-key: ${{ needs.get-env.outputs.PROJECT_KEY }}
+    secrets:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

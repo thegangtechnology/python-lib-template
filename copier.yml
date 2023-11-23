@@ -2,6 +2,14 @@
 project_name:
     type: str
     help: "What is your project name? (Python package name. Ex: the_gang_model)"
+python_version:
+    type: str
+    default: "3.11"
+    help: "What is your python version? (Ex: 3.8)"
+poetry_version:
+    type: str
+    default: "1.7.1"
+    help: "What is your poetry version? (Ex: 1.1.11)"
 _subdirectory: template
 _tasks:
     - "git init"
