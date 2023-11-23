@@ -14,9 +14,9 @@ jobs:
     name: Get Environment vars
     runs-on: ubuntu-latest
     outputs:
-      PYTHON_VERSION: ${{ env.PYTHON_VERSION }}
-      POETRY_VERSION: ${{ env.POETRY_VERSION }}
-      PROJECT_KEY: ${{ env.PROJECT_KEY }}
+      PYTHON_VERSION: {% raw %}${{ env.PYTHON_VERSION }}{% endraw %}
+      POETRY_VERSION: {% raw %}${{ env.POETRY_VERSION }}{% endraw %}
+      PROJECT_KEY: {% raw %}${{ env.PROJECT_KEY }}{% endraw %}
     steps:
       - run: echo "null"
 
@@ -24,14 +24,14 @@ jobs:
     needs: get-env
     uses: thegangtechnology/shared-workflow/.github/workflows/python-lint.yml@main
     with:
-      python-version: ${{ needs.get-env.outputs.PYTHON_VERSION }}
+      python-version: {% raw %}${{ needs.get-env.outputs.PYTHON_VERSION }}{% endraw %}
 
   test-and-sonarqube:
     needs: get-env
     uses: thegangtechnology/shared-workflow/.github/workflows/python-test-sonarqube.yml@main
     with:
-      python-version: ${{ needs.get-env.outputs.PYTHON_VERSION }}
-      poetry-version: ${{ needs.get-env.outputs.POETRY_VERSION }}
-      project-key: ${{ needs.get-env.outputs.PROJECT_KEY }}
+      python-version: {% raw %}${{ needs.get-env.outputs.PYTHON_VERSION }}{% endraw %}
+      poetry-version: {% raw %}${{ needs.get-env.outputs.POETRY_VERSION }}{% endraw %}
+      project-key: {% raw %}${{ needs.get-env.outputs.PROJECT_KEY }}{% endraw %}
     secrets:
-      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      SONAR_TOKEN: {% raw %}${{ secrets.SONAR_TOKEN }}{% endraw %}
